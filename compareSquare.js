@@ -2,14 +2,18 @@ function comp(array1, array2) {
   if (!array1 || !array2) {
     return false;
   }
+  if (array1.length !== array2.length) {
+    return false;
+  }
   const new1 = array1.sort(function (a, b) {
     return a - b;
   });
   const new2 = array2.sort(function (a, b) {
     return a - b;
   });
+
   const newAgain = new1.map((element) => element * element);
-  return JSON.stringify(new2) === JSON.stringify(newAgain);
+  return newAgain.every((element, i) => element === new2[i]);
 }
 
 a1 = [5, 10, 2, 2, 6, 9, 2, 4, 1, 1, 0, 8, 3, 9, 4, 0, 5, 3, 2, 0, 1, 7];
